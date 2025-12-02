@@ -1,0 +1,1516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>12AM Devil – Hostel Night Store</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #faf3eb;
+      color: #122023;
+    }
+    a { text-decoration: none; }
+
+    /* Top nav */
+    .top-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 32px;
+      background: #0b4635;
+      color: #fff;
+    }
+    .top-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .logo-circle {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #fbd38d;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+    .brand-title {
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .nav-btn {
+      padding: 6px 14px;
+      border-radius: 999px;
+      border: 1px solid #e2e8f0;
+      background: #fff;
+      font-size: 13px;
+      cursor: pointer;
+    }
+    .nav-btn.primary {
+      background: #00704a;
+      color: #fff;
+      border-color: #00704a;
+    }
+    .nav-user {
+      font-size: 13px;
+      color: #e2e8f0;
+    }
+
+    /* Green info strip */
+    .info-strip {
+      background: #006039;
+      color: #fefae0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 32px;
+      font-size: 15px;
+    }
+    .info-strip span.highlight {
+      font-weight: 700;
+      text-decoration: underline;
+    }
+
+    /* Hero slider */
+    .hero {
+      padding: 32px;
+      display: flex;
+      justify-content: center;
+    }
+    .hero-card {
+      max-width: 1120px;
+      width: 100%;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #ffecb3, #f6a241);
+      padding: 24px 28px;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 20px;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-left h2 {
+      font-size: 28px;
+      margin-bottom: 6px;
+    }
+    .hero-tag {
+      font-size: 14px;
+      opacity: 0.9;
+      margin-bottom: 16px;
+    }
+    .hero-desc {
+      font-size: 15px;
+      max-width: 480px;
+      margin-bottom: 20px;
+    }
+    .hero-bottom {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .hero-btn {
+      padding: 8px 20px;
+      border-radius: 999px;
+      border: none;
+      background: #006039;
+      color: #fff;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    .hero-arrow {
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      border: 1px solid rgba(0,0,0,0.2);
+      background: rgba(255,255,255,0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .hero-track {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 3px;
+      background: rgba(255,255,255,0.6);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .hero-track-inner {
+      width: 40px;
+      height: 100%;
+      background: #006039;
+      border-radius: 999px;
+      transition: transform 0.3s;
+    }
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+    .hero-avatar {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 20%, #fff, #004432);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.25);
+    }
+    .hero-avatar img {
+      width: 80%;
+      height: 80%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+    .hero-pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      font-size: 11px;
+    }
+    .hero-pill {
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.15);
+      color: #fff;
+    }
+
+    /* Layout main */
+    main {
+      max-width: 1200px;
+      margin: 0 auto 60px;
+      padding: 0 16px 40px;
+    }
+    .section-title {
+      font-size: 22px;
+      margin: 12px 4px 4px;
+    }
+    .section-sub {
+      font-size: 14px;
+      margin: 0 4px 14px;
+      color: #555;
+    }
+
+    .menu-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 2.2fr) minmax(260px, 1.3fr);
+      gap: 18px;
+      align-items: flex-start;
+    }
+    @media (max-width: 960px) {
+      .hero-card { grid-template-columns: 1fr; }
+      .menu-layout { grid-template-columns: 1fr; }
+    }
+
+    /* Item card */
+    .items-list { display: flex; flex-direction: column; gap: 12px; }
+    .item-card {
+      background: #fff;
+      border-radius: 18px;
+      padding: 12px 16px;
+      display: grid;
+      grid-template-columns: 120px minmax(0, 1fr);
+      gap: 14px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+      position: relative;
+      overflow: hidden;
+    }
+    .item-img-wrap {
+      position: relative;
+    }
+    .item-img {
+      width: 120px;
+      height: 120px;
+      border-radius: 12px;
+      object-fit: cover;
+    }
+    .timer-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      text-align: center;
+      padding: 6px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s;
+    }
+    .timer-overlay.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .timer-overlay strong {
+      font-size: 14px;
+    }
+    .emoji-float {
+      position: fixed;
+      pointer-events: none;
+      z-index: 999;
+      font-size: 22px;
+      opacity: 0;
+      transform: translate(-50%, -50%);
+    }
+    .item-content h3 {
+      margin: 2px 0 2px;
+      font-size: 18px;
+    }
+    .item-tag {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: #f1f5f9;
+      font-size: 11px;
+      margin-bottom: 4px;
+    }
+    .item-desc {
+      font-size: 13px;
+      margin-bottom: 8px;
+      color: #4b5563;
+    }
+    .item-meta {
+      font-size: 12px;
+      margin-bottom: 4px;
+      color: #6b7280;
+    }
+    .price-row {
+      font-weight: 600;
+      margin-bottom: 2px;
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+    .room-label {
+      font-size: 11px;
+      color: #4b5563;
+      min-width: 6ch;
+      text-transform: uppercase;
+    }
+    .stock-line { font-size: 13px; margin-bottom: 6px; }
+    .stock-line.out { color: #c0392b; font-weight: 600; }
+    .item-actions {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 8px;
+    }
+    .btn-pill {
+      padding: 6px 16px;
+      border-radius: 999px;
+      border: none;
+      background: #00704a;
+      color: #fff;
+      font-size: 13px;
+      cursor: pointer;
+      box-shadow: 0 6px 14px rgba(0,112,74,0.35);
+    }
+    .btn-pill[disabled] {
+      background: #9ca3af;
+      box-shadow: none;
+      cursor: not-allowed;
+    }
+
+    /* Admin edit area */
+    .admin-edit {
+      margin-top: 10px;
+      padding-top: 8px;
+      border-top: 1px dashed #e2e8f0;
+      display: none;
+      font-size: 12px;
+    }
+    body.admin .admin-edit { display: block; }
+    .admin-edit label {
+      display: block;
+      margin-bottom: 4px;
+    }
+    .admin-edit input, .admin-edit textarea {
+      width: 100%;
+      padding: 4px 6px;
+      border-radius: 6px;
+      border: 1px solid #d1d5db;
+      font-size: 12px;
+      margin-top: 2px;
+      margin-bottom: 4px;
+    }
+    .admin-edit-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 6px 10px;
+      margin-bottom: 6px;
+    }
+    .admin-edit .btn-small {
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: none;
+      font-size: 11px;
+      cursor: pointer;
+      margin-right: 4px;
+    }
+    .btn-save { background: #16a34a; color: #fff; }
+    .btn-timer-start { background: #4b5563; color: #fff; }
+    .btn-timer-stop { background: #dc2626; color: #fff; }
+
+    /* Cart */
+    .cart {
+      background: #111827;
+      color: #f9fafb;
+      border-radius: 18px;
+      padding: 14px 14px 18px;
+      position: sticky;
+      top: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+    .cart h3 {
+      margin-bottom: 4px;
+    }
+    .cart-sub {
+      font-size: 11px;
+      color: #9ca3af;
+      margin-bottom: 10px;
+    }
+    .cart-items {
+      max-height: 220px;
+      overflow-y: auto;
+      margin-bottom: 6px;
+    }
+    .cart-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      margin-bottom: 6px;
+    }
+    .cart-row-title { flex: 1.4; }
+    .cart-row-controls {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 12px;
+    }
+    .qty-btn {
+      width: 20px;
+      height: 20px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+    }
+    .cart-empty {
+      font-size: 12px;
+      color: #9ca3af;
+      margin: 4px 0 8px;
+    }
+    .cart-total {
+      font-weight: 600;
+      margin: 6px 0 10px;
+    }
+    .cart label {
+      display: block;
+      font-size: 11px;
+      margin-bottom: 4px;
+    }
+    .cart input {
+      width: 100%;
+      padding: 4px 6px;
+      border-radius: 6px;
+      border: 1px solid #374151;
+      background: #030712;
+      color: #e5e7eb;
+      font-size: 12px;
+      margin-bottom: 6px;
+    }
+    .checkout-btn {
+      width: 100%;
+      padding: 7px 12px;
+      border-radius: 999px;
+      border: none;
+      background: #22c55e;
+      color: #022c22;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 4px;
+    }
+    .checkout-btn[disabled] {
+      background: #4b5563;
+      cursor: not-allowed;
+    }
+    .login-required-msg {
+      font-size: 11px;
+      color: #f97316;
+      margin-top: 4px;
+    }
+
+    /* Books section */
+    .category-header {
+      margin-top: 24px;
+      margin-bottom: 8px;
+      font-weight: 600;
+      font-size: 16px;
+    }
+
+    /* Special request card */
+    .special-card {
+      margin-top: 30px;
+      background: #fff;
+      padding: 20px 18px 24px;
+      border-radius: 18px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    }
+    .special-card h3 { margin-bottom: 10px; }
+    .special-card ul {
+      margin-left: 20px;
+      font-size: 14px;
+    }
+    .special-card li { margin-bottom: 4px; }
+    .special-card p { margin-top: 10px; font-size: 13px; color: #4b5563; }
+
+    /* Auth / OTP modals */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15,23,42,0.55);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 900;
+    }
+    .overlay.visible { display: flex; }
+    .modal {
+      background: #fff;
+      border-radius: 16px;
+      padding: 18px 18px 20px;
+      width: 320px;
+      max-width: 90vw;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.35);
+      animation: pop 0.25s ease-out;
+    }
+    @keyframes pop {
+      from { transform: scale(0.9); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    .modal h3 { margin-bottom: 8px; }
+    .modal p { font-size: 12px; margin-bottom: 10px; color: #4b5563; }
+    .modal label {
+      display: block;
+      font-size: 12px;
+      margin-bottom: 4px;
+    }
+    .modal input {
+      width: 100%;
+      padding: 6px 8px;
+      border-radius: 8px;
+      border: 1px solid #d1d5db;
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+    .modal .btn-row {
+      margin-top: 8px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+    .modal-btn {
+      padding: 6px 14px;
+      border-radius: 999px;
+      border: none;
+      font-size: 13px;
+      cursor: pointer;
+    }
+    .modal-btn.primary { background: #00704a; color: #fff; }
+    .modal-btn.ghost { background: transparent; border: 1px solid #d1d5db; }
+
+    .otp-box {
+      margin-top: 4px;
+      padding: 8px 10px;
+      border-radius: 10px;
+      background: #0f172a;
+      color: #e5e7eb;
+      text-align: center;
+      font-family: "SF Mono", ui-monospace, Menlo, Monaco, monospace;
+      letter-spacing: 0.3em;
+      font-size: 18px;
+      animation: blink 0.9s infinite;
+    }
+    @keyframes blink {
+      0%, 60%, 100% { opacity: 1; transform: scale(1); }
+      30% { opacity: 0.3; transform: scale(1.05); }
+    }
+
+    /* Admin floating buttons */
+    .admin-fab-wrap {
+      position: fixed;
+      left: 16px;
+      bottom: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      z-index: 910;
+    }
+    .admin-fab {
+      padding: 7px 14px;
+      border-radius: 999px;
+      background: #000;
+      color: #fff;
+      font-size: 12px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+      transform: translateY(50px);
+      opacity: 0;
+      transition: all 0.25s;
+    }
+    .admin-fab.visible {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    .admin-fab.exit {
+      background: #b91c1c;
+    }
+
+    /* Thank you overlay + confetti area */
+    .thank-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15,23,42,0.65);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 930;
+      color: #fff;
+      text-align: center;
+      flex-direction: column;
+      padding: 20px;
+    }
+    .thank-overlay.visible { display: flex; }
+    .thank-box {
+      background: #020617;
+      padding: 20px 26px;
+      border-radius: 18px;
+      max-width: 420px;
+      width: 100%;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.5);
+    }
+    .thank-box h2 { margin-bottom: 8px; }
+    .thank-box p { font-size: 14px; margin-bottom: 10px; }
+    .thank-close {
+      margin-top: 8px;
+      padding: 6px 16px;
+      border-radius: 999px;
+      border: none;
+      background: #22c55e;
+      color: #022c22;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    /* Simple footer */
+    footer {
+      text-align: center;
+      font-size: 11px;
+      color: #6b7280;
+      padding: 8px 0 18px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top navigation -->
+  <header>
+    <div class="top-nav">
+      <div class="top-left">
+        <div class="logo-circle">🦉</div>
+        <div>
+          <div class="brand-title">12AM Devil</div>
+          <div style="font-size:11px; color:#d1fae5;">Hostel Night Store • Coffee • UNO • Books</div>
+        </div>
+      </div>
+      <div class="nav-actions">
+        <button id="loginBtn" class="nav-btn">Login</button>
+        <button id="signupBtn" class="nav-btn primary">Sign Up</button>
+        <span id="navUser" class="nav-user"></span>
+      </div>
+    </div>
+    <div class="info-strip">
+      <div>Late-night Coffee ☕ &amp; UNO Rentals 🃏 for hostel night-owls.</div>
+      <div><span class="highlight">Cash on Delivery</span> • <span class="highlight">WhatsApp orders only</span></div>
+    </div>
+  </header>
+
+  <!-- Hero slider -->
+  <section class="hero">
+    <div class="hero-card">
+      <div class="hero-left">
+        <div class="hero-tag" id="heroTag">New • Night Owl Favourites</div>
+        <h2 id="heroTitle">Normal Coffee – Exam Fuel</h2>
+        <p class="hero-desc" id="heroText">
+          Classic hostel style coffee that keeps you awake for last-minute submissions and surprise unit tests.
+        </p>
+        <div class="hero-bottom">
+          <button id="heroKnowMore" class="hero-btn">Know more</button>
+          <div class="hero-arrow" id="heroPrev">‹</div>
+          <div class="hero-arrow" id="heroNext">›</div>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-avatar">
+          <img id="heroImage" src="normal-coffee.webp" alt="12AM Devil hero">
+        </div>
+        <div class="hero-pill-row">
+          <span class="hero-pill">Sleepy toppers</span>
+          <span class="hero-pill">Movie marathoners</span>
+          <span class="hero-pill">Rank-chasing gamers</span>
+          <span class="hero-pill">Last-minute project teams</span>
+        </div>
+      </div>
+      <div class="hero-track"><div class="hero-track-inner" id="heroTrackInner"></div></div>
+    </div>
+  </section>
+
+  <main>
+    <h2 class="section-title">Midnight Menu</h2>
+    <p class="section-sub">Order hot coffee, UNO card rentals, and basic study supplies. All prices in ₹ (Indian Rupees).</p>
+
+    <div class="menu-layout">
+      <!-- Items -->
+      <div class="items-list" id="itemsContainer">
+        <!-- Injected by JS -->
+      </div>
+
+      <!-- Cart -->
+      <aside class="cart">
+        <h3>Your Cart</h3>
+        <p class="cart-sub">Your chaos tray. Add coffee, cards, and books. COD only.</p>
+        <div id="cartItems" class="cart-items"></div>
+        <p id="cartEmpty" class="cart-empty">Cart is empty. Add something spicy for the night 🌙</p>
+        <p class="cart-total">Total: ₹<span id="cartTotal">0</span></p>
+
+        <label>
+          Room Number
+          <input id="roomInput" placeholder="Room 304" />
+        </label>
+        <label>
+          Floor / Block
+          <input id="floorInput" placeholder="3rd Floor, Block B" />
+        </label>
+        <label>
+          Notes / Landmark
+          <input id="notesInput" placeholder="Landmark, friends, timing, special wishes" />
+        </label>
+
+        <button id="checkoutBtn" class="checkout-btn">Submit Order via WhatsApp</button>
+        <p id="loginMsg" class="login-required-msg" style="display:none;">
+          Please login as customer to place an order.
+        </p>
+      </aside>
+    </div>
+
+    <!-- Special request info -->
+    <section class="special-card">
+      <h3>How to ask for special items ✨</h3>
+      <ul>
+        <li>Type your wish clearly in the <strong>Notes / Landmark</strong> box above.</li>
+        <li>Example: <em>“Room 304, Block B – also 2 Maggi packets &amp; 1 KitKat if possible.”</em></li>
+        <li>We’ll confirm on WhatsApp after you submit the order.</li>
+      </ul>
+      <p>
+        We promise to try our best. Some items may be unavailable in the area or not allowed on campus – 
+        in that case, please forgive us 💚
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    12AM Devil • Built for hostel night-owls. Coffee, cards, books &amp; last-minute rescue missions.
+  </footer>
+
+  <!-- Admin floating buttons -->
+  <div class="admin-fab-wrap">
+    <button id="adminExitFab" class="admin-fab exit">Exit Admin</button>
+    <button id="adminLoginFab" class="admin-fab visible">Admin Login</button>
+  </div>
+
+  <!-- Auth / OTP / Admin modals -->
+  <div id="loginOverlay" class="overlay">
+    <div class="modal">
+      <h3>Login</h3>
+      <p>Welcome back to 12AM Devil. Use your email or phone.</p>
+      <label>Email / Phone</label>
+      <input id="loginIdentity" type="text" placeholder="you@example.com / 9xxxxxxxxx" />
+      <label>Password</label>
+      <input id="loginPassword" type="password" placeholder="Your password" />
+      <div class="btn-row">
+        <button class="modal-btn ghost" onclick="closeOverlay('loginOverlay')">Cancel</button>
+        <button class="modal-btn primary" id="loginSubmit">Login</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="signupOverlay" class="overlay">
+    <div class="modal">
+      <h3>Sign Up</h3>
+      <p>Create a simple hostel account. OTP is just for confirmation here.</p>
+      <label>Name</label>
+      <input id="signupName" type="text" placeholder="Your name" />
+      <label>Email / Phone</label>
+      <input id="signupIdentity" type="text" placeholder="you@example.com / 9xxxxxxxxx" />
+      <label>Password</label>
+      <input id="signupPassword" type="password" placeholder="Create a password" />
+      <div id="otpPreview" style="display:none;">
+        <p style="margin-bottom:4px;">Your OTP (demo only, highlight):</p>
+        <div id="otpCode" class="otp-box"></div>
+      </div>
+      <label>Enter OTP</label>
+      <input id="signupOtpInput" type="text" placeholder="Enter 4-digit OTP shown above" />
+      <div class="btn-row">
+        <button class="modal-btn ghost" onclick="closeOverlay('signupOverlay')">Cancel</button>
+        <button class="modal-btn primary" id="signupSubmit">Verify &amp; Sign Up</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="adminOverlay" class="overlay">
+    <div class="modal">
+      <h3>Admin Login</h3>
+      <p>Restricted panel for 12AM Devil admin only.</p>
+      <label>Admin ID</label>
+      <input id="adminUser" type="text" placeholder="Abhishek" />
+      <label>Password</label>
+      <input id="adminPass" type="password" placeholder="Madmaxwalker97433" />
+      <div class="btn-row">
+        <button class="modal-btn ghost" onclick="closeOverlay('adminOverlay')">Cancel</button>
+        <button class="modal-btn primary" id="adminSubmit">Login as Admin</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Thank you overlay -->
+  <div id="thankOverlay" class="thank-overlay">
+    <div class="thank-box">
+      <h2>Thank you for ordering! 🎉</h2>
+      <p id="thankMessage">Your order is flying through the hostel corridors.</p>
+      <button id="thankClose" class="thank-close">Back to menu</button>
+    </div>
+  </div>
+
+  <!-- Emoji for animation -->
+  <div id="emojiFloat" class="emoji-float">☕</div>
+
+  <script>
+    /*************** DATA ***************/
+    const PRODUCTS = [
+      {
+        id: "normalCoffee",
+        category: "coffee",
+        name: "Normal Coffee",
+        tag: "Night Owl Fuel",
+        owner: "Abhishek",
+        desc: "Classic energizing brew to keep you awake for late-night study sessions.",
+        price: 29,
+        stock: 8,
+        img: "normal-coffee.webp",
+        room: "",
+        timerMinutes: 0
+      },
+      {
+        id: "creamCoffee",
+        category: "coffee",
+        name: "Cream Coffee",
+        tag: "Comfort Cup",
+        owner: "Abhishek",
+        desc: "Smooth, creamy and dangerously cosy for nap plans.",
+        price: 39,
+        stock: 9,
+        img: "cream-coffee.jpg",
+        room: "",
+        timerMinutes: 0
+      },
+      {
+        id: "unoNormal",
+        category: "uno",
+        name: "UNO Normal (Rent)",
+        tag: "Classic Chaos",
+        owner: "Abhishek",
+        desc: "Classic UNO deck. Shouting, revenge and reverse cards guaranteed.",
+        price: 49,
+        stock: 5,
+        img: "uno-normal.jpg",
+        room: "",
+        timerMinutes: 719   // 11h59m
+      },
+      {
+        id: "unoFlip",
+        category: "uno",
+        name: "UNO Flip (Rent)",
+        tag: "Double Sided Drama",
+        owner: "Abhishek",
+        desc: "Light & dark side cards for double-sided hostel drama.",
+        price: 49,
+        stock: 5,
+        img: "uno-flip.jpg",
+        room: "",
+        timerMinutes: 719
+      },
+      {
+        id: "unoNoMercy",
+        category: "uno",
+        name: "UNO No Mercy (Rent)",
+        tag: "Savage Mode",
+        owner: "Abhishek",
+        desc: "No mercy. No apologies. Just pain.",
+        price: 49,
+        stock: 0,
+        img: "uno-no-mercy.webp",
+        room: "",
+        timerMinutes: 719
+      },
+      // Books
+      {
+        id: "record100",
+        category: "books",
+        name: "Record Book – 100 pages",
+        tag: "Neat Notes",
+        owner: "Abhishek",
+        desc: "For lab records that get checked more than they get read.",
+        price: 65,
+        stock: 10,
+        img: "record-100.jpg",
+        room: "",
+        timerMinutes: 0
+      },
+      {
+        id: "record200",
+        category: "books",
+        name: "Record Book – 200 pages",
+        tag: "Project Partner",
+        owner: "Abhishek",
+        desc: "Extra thick for project diagrams, viva secrets and last-minute theory.",
+        price: 110,
+        stock: 6,
+        img: "record-200.jpg",
+        room: "",
+        timerMinutes: 0
+      },
+      {
+        id: "blueBook",
+        category: "books",
+        name: "Blue Single-Rule Book",
+        tag: "Exam Buddy",
+        owner: "Abhishek",
+        desc: "For surprise tests, extra answer sheets and fake rough work.",
+        price: 35,
+        stock: 20,
+        img: "blue-book.jpg",
+        room: "",
+        timerMinutes: 0
+      },
+      {
+        id: "a4Sheets",
+        category: "books",
+        name: "A4 Sheets Pack",
+        tag: "Assignment Saver",
+        owner: "Abhishek",
+        desc: "Loose A4 sheets for diagrams, circuits and last-minute printout emergencies.",
+        price: 30,
+        stock: 25,
+        img: "a4-sheets.jpg",
+        room: "",
+        timerMinutes: 0
+      }
+    ];
+
+    // Restore from localStorage if exists
+    const savedProducts = localStorage.getItem("devilProductsV2");
+    if (savedProducts) {
+      try {
+        const parsed = JSON.parse(savedProducts);
+        parsed.forEach(p => {
+          const idx = PRODUCTS.findIndex(x => x.id === p.id);
+          if (idx >= 0) PRODUCTS[idx] = { ...PRODUCTS[idx], ...p };
+        });
+      } catch(e){}
+    }
+
+    let customer = JSON.parse(localStorage.getItem("devilCustomer")) || null;
+    let adminLogged = localStorage.getItem("devilAdmin") === "true";
+    let cart = JSON.parse(localStorage.getItem("devilCartV2")) || {};
+    let activeOtp = null;
+
+    const timers = {}; // id -> {endTime, interval}
+
+    /*************** UTILS ***************/
+    function saveProducts() {
+      localStorage.setItem("devilProductsV2", JSON.stringify(PRODUCTS));
+    }
+    function saveCart() {
+      localStorage.setItem("devilCartV2", JSON.stringify(cart));
+    }
+    function openOverlay(id) {
+      document.getElementById(id).classList.add("visible");
+    }
+    function closeOverlay(id) {
+      document.getElementById(id).classList.remove("visible");
+    }
+
+    /*************** HERO SLIDER ***************/
+    const heroSlides = [
+      {
+        tag: "New • Night Owl Favourites",
+        title: "Normal Coffee – Exam Fuel",
+        text: "Classic hostel style coffee that keeps you awake for last-minute submissions.",
+        img: "normal-coffee.webp"
+      },
+      {
+        tag: "Gamers • UNO Night",
+        title: "UNO No Mercy – Savage Lobby",
+        text: "Perfect for last-life lobbies where nobody wants to sleep before 4 AM.",
+        img: "uno-no-mercy.webp"
+      },
+      {
+        tag: "Study Supplies",
+        title: "Record Books & A4 Sheets",
+        text: "From clean lab records to last-minute project diagrams, we’ve got your pages ready.",
+        img: "record-200.jpg"
+      }
+    ];
+    let heroIndex = 0;
+
+    function renderHero() {
+      const slide = heroSlides[heroIndex];
+      document.getElementById("heroTag").textContent = slide.tag;
+      document.getElementById("heroTitle").textContent = slide.title;
+      document.getElementById("heroText").textContent = slide.text;
+      document.getElementById("heroImage").src = slide.img;
+      document.getElementById("heroTrackInner").style.transform =
+        `translateX(${heroIndex * 40}px)`;
+    }
+    document.getElementById("heroPrev").onclick = () => {
+      heroIndex = (heroIndex + heroSlides.length - 1) % heroSlides.length;
+      renderHero();
+    };
+    document.getElementById("heroNext").onclick = () => {
+      heroIndex = (heroIndex + 1) % heroSlides.length;
+      renderHero();
+    };
+    document.getElementById("heroKnowMore").onclick = () => {
+      window.scrollTo({ top: document.querySelector("main").offsetTop, behavior: "smooth" });
+    };
+
+    /*************** RENDER ITEMS ***************/
+    const itemsContainer = document.getElementById("itemsContainer");
+
+    function formatTimer(minsLeft) {
+      const h = Math.floor(minsLeft / 60);
+      const m = minsLeft % 60;
+      return `${h.toString().padStart(2,"0")}h ${m.toString().padStart(2,"0")}m`;
+    }
+
+    function renderItems() {
+      itemsContainer.innerHTML = "";
+
+      const groups = {
+        coffee: { label: "Coffee", order: 1 },
+        uno: { label: "UNO Cards on Rent", order: 2 },
+        books: { label: "Books & Stationery", order: 3 }
+      };
+
+      Object.values(groups).sort((a,b)=>a.order-b.order);
+
+      Object.keys(groups).forEach(cat => {
+        const catHeader = document.createElement("div");
+        catHeader.className = "category-header";
+        catHeader.textContent = groups[cat].label;
+        itemsContainer.appendChild(catHeader);
+
+        PRODUCTS.filter(p => p.category === cat).forEach(p => {
+          const card = document.createElement("div");
+          card.className = "item-card";
+          card.dataset.id = p.id;
+
+          const overlayClass = p.stock === 0 && p.timerMinutes > 0 ? "timer-overlay visible" : "timer-overlay";
+
+          card.innerHTML = `
+            <div class="item-img-wrap">
+              <img class="item-img" src="${p.img}" alt="${p.name}">
+              <div class="${overlayClass}" data-timer-overlay="${p.id}">
+                <strong>Out of stock</strong>
+                <span style="margin-top:4px;">Back in:</span>
+                <span data-timer-text="${p.id}">${p.timerMinutes>0?formatTimer(p.timerMinutes):"--"}</span>
+              </div>
+            </div>
+            <div class="item-content">
+              <div class="item-tag">${p.tag}</div>
+              <h3>${p.name}</h3>
+              <div class="item-meta">Curated by ${p.owner}</div>
+              <p class="item-desc">${p.desc}</p>
+              <div class="price-row">
+                <span>₹${p.price}</span>
+                <span class="room-label" data-room-label="${p.id}">${p.room ? "Room: "+p.room : ""}</span>
+              </div>
+              <div class="stock-line ${p.stock<=0?"out":""}">
+                ${p.stock<=0 ? "Out of stock" : "Stock: "+p.stock}
+              </div>
+              <div class="item-actions">
+                <button class="btn-pill add-cart-btn" data-add="${p.id}" ${p.stock<=0?"disabled":""}>
+                  Add to Cart
+                </button>
+              </div>
+              <div class="admin-edit" data-admin-edit="${p.id}">
+                <div class="admin-edit-row">
+                  <label>Item Name
+                    <input data-edit-name="${p.id}" value="${p.name}">
+                  </label>
+                  <label>Tag Line
+                    <input data-edit-tag="${p.id}" value="${p.tag}">
+                  </label>
+                </div>
+                <div class="admin-edit-row">
+                  <label>Owner Name
+                    <input data-edit-owner="${p.id}" value="${p.owner}">
+                  </label>
+                  <label>Price (₹)
+                    <input type="number" min="0" data-edit-price="${p.id}" value="${p.price}">
+                  </label>
+                </div>
+                <div class="admin-edit-row">
+                  <label>Image File / URL
+                    <input data-edit-img="${p.id}" value="${p.img}">
+                  </label>
+                  <label>Stock
+                    <input type="number" min="0" data-edit-stock="${p.id}" value="${p.stock}">
+                  </label>
+                </div>
+                <div class="admin-edit-row">
+                  <label>Timer (minutes)
+                    <input type="number" min="0" data-edit-timer="${p.id}" value="${p.timerMinutes}">
+                  </label>
+                  <label>Room Number (6 chars)
+                    <input maxlength="6" data-edit-room="${p.id}" value="${p.room}">
+                  </label>
+                </div>
+                <div>
+                  <button class="btn-small btn-save" data-save="${p.id}">Save</button>
+                  <button class="btn-small btn-timer-start" data-timer-start="${p.id}">Start Timer</button>
+                  <button class="btn-small btn-timer-stop" data-timer-stop="${p.id}">Stop Timer</button>
+                </div>
+              </div>
+            </div>
+          `;
+          itemsContainer.appendChild(card);
+        });
+      });
+
+      attachItemEvents();
+      updateAdminVisibility();
+    }
+
+    /*************** CART RENDER ***************/
+    const cartItemsEl = document.getElementById("cartItems");
+    const cartEmptyEl = document.getElementById("cartEmpty");
+    const cartTotalEl = document.getElementById("cartTotal");
+
+    function renderCart() {
+      cartItemsEl.innerHTML = "";
+      let ids = Object.keys(cart);
+      if (ids.length === 0) {
+        cartEmptyEl.style.display = "block";
+        cartTotalEl.textContent = "0";
+        return;
+      }
+      cartEmptyEl.style.display = "none";
+
+      let total = 0;
+      ids.forEach(id => {
+        const qty = cart[id];
+        const prod = PRODUCTS.find(p=>p.id===id);
+        if (!prod) return;
+        const sub = prod.price * qty;
+        total += sub;
+        const row = document.createElement("div");
+        row.className = "cart-row";
+        row.innerHTML = `
+          <div class="cart-row-title">${prod.name}</div>
+          <div class="cart-row-controls" data-cart-row="${id}">
+            <button class="qty-btn" data-cart-dec="${id}">−</button>
+            <span>${qty}</span>
+            <button class="qty-btn" data-cart-inc="${id}">+</button>
+            <span>₹${sub}</span>
+          </div>
+        `;
+        cartItemsEl.appendChild(row);
+      });
+      cartTotalEl.textContent = total;
+    }
+
+    /*************** ANIMATIONS ***************/
+    const emojiFloat = document.getElementById("emojiFloat");
+    const EMOJI_MAP = {
+      coffee: "☕",
+      uno: "🃏",
+      books: "📚"
+    };
+
+    function flyEmojiFromCard(prodId) {
+      const prod = PRODUCTS.find(p=>p.id===prodId);
+      const card = document.querySelector(`.item-card[data-id="${prodId}"]`);
+      const cartBox = document.querySelector(".cart");
+      if (!card || !cartBox) return;
+
+      const rectStart = card.getBoundingClientRect();
+      const rectEnd = cartBox.getBoundingClientRect();
+
+      emojiFloat.textContent = EMOJI_MAP[prod.category] || "✨";
+      emojiFloat.style.left = (rectStart.left + rectStart.width/2) + "px";
+      emojiFloat.style.top = (rectStart.top + 40) + "px";
+      emojiFloat.style.opacity = "1";
+
+      const deltaX = rectEnd.left + rectEnd.width/2 - (rectStart.left + rectStart.width/2);
+      const deltaY = rectEnd.top + 20 - (rectStart.top + 40);
+
+      emojiFloat.animate([
+        { transform: "translate(0,0) scale(1)", opacity: 1 },
+        { transform: `translate(${deltaX}px, ${deltaY}px) scale(0.4)`, opacity: 0.1 }
+      ], { duration: 600, easing: "cubic-bezier(0.22, 0.61, 0.36, 1)" });
+
+      setTimeout(()=>{ emojiFloat.style.opacity = "0"; }, 620);
+    }
+
+    function emojiConfettiBurst() {
+      const emojis = ["☕","🃏","📚","✨","🌙"];
+      for (let i=0;i<28;i++) {
+        const span = document.createElement("span");
+        span.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+        span.style.position = "fixed";
+        span.style.left = (Math.random()*100) + "vw";
+        span.style.top = "-10px";
+        span.style.zIndex = 920;
+        span.style.fontSize = (16 + Math.random()*12)+"px";
+        document.body.appendChild(span);
+
+        const endY = 110 + Math.random()*20;
+        const duration = 2000 + Math.random()*1200;
+
+        span.animate([
+          { transform: "translateY(0)", opacity: 1 },
+          { transform: `translateY(${endY}vh)`, opacity: 0 }
+        ], { duration, easing: "ease-out" });
+
+        setTimeout(()=> span.remove(), duration+50);
+      }
+    }
+
+    /*************** ITEM EVENTS ***************/
+    function attachItemEvents() {
+      // Add to cart
+      document.querySelectorAll(".add-cart-btn").forEach(btn => {
+        btn.onclick = () => {
+          const id = btn.dataset.add;
+          const prod = PRODUCTS.find(p=>p.id===id);
+          if (!prod) return;
+          if (!customer) {
+            alert("Please login as customer first.");
+            return;
+          }
+          if (prod.stock <= 0) {
+            alert("Out of stock right now.");
+            return;
+          }
+          prod.stock -= 1;
+          cart[id] = (cart[id]||0) + 1;
+          saveProducts(); saveCart();
+          renderItems();
+          renderCart();
+          flyEmojiFromCard(id);
+        };
+      });
+
+      // Admin save
+      document.querySelectorAll("[data-save]").forEach(btn => {
+        btn.onclick = () => {
+          const id = btn.dataset.save;
+          const prod = PRODUCTS.find(p=>p.id===id);
+          if (!prod) return;
+          prod.name = document.querySelector(`[data-edit-name="${id}"]`).value;
+          prod.tag = document.querySelector(`[data-edit-tag="${id}"]`).value;
+          prod.owner = document.querySelector(`[data-edit-owner="${id}"]`).value;
+          prod.price = parseInt(document.querySelector(`[data-edit-price="${id}"]`).value || "0",10);
+          prod.img = document.querySelector(`[data-edit-img="${id}"]`).value;
+          prod.stock = parseInt(document.querySelector(`[data-edit-stock="${id}"]`).value || "0",10);
+          prod.timerMinutes = parseInt(document.querySelector(`[data-edit-timer="${id}"]`).value || "0",10);
+          prod.room = document.querySelector(`[data-edit-room="${id}"]`).value.slice(0,6);
+          saveProducts();
+          renderItems();
+          renderCart();
+          alert("Saved changes for " + prod.name);
+        };
+      });
+
+      // Timer start/stop
+      document.querySelectorAll("[data-timer-start]").forEach(btn => {
+        btn.onclick = () => {
+          const id = btn.dataset.timerStart;
+          const prod = PRODUCTS.find(p=>p.id===id);
+          if (!prod) return;
+          const mins = parseInt(document.querySelector(`[data-edit-timer="${id}"]`).value || "0",10);
+          if (mins<=0) { alert("Set timer minutes > 0"); return; }
+          startTimer(id, mins);
+        };
+      });
+      document.querySelectorAll("[data-timer-stop]").forEach(btn => {
+        btn.onclick = () => {
+          const id = btn.dataset.timerStop;
+          stopTimer(id);
+        };
+      });
+    }
+
+    /*************** TIMER LOGIC ***************/
+    function startTimer(id, minutes) {
+      stopTimer(id);
+      const prod = PRODUCTS.find(p=>p.id===id);
+      if (!prod) return;
+      const endTime = Date.now() + minutes*60000;
+      timers[id] = { endTime };
+      prod.timerMinutes = minutes;
+      saveProducts();
+      tickTimer(id);
+      timers[id].interval = setInterval(()=>tickTimer(id), 60000);
+      renderItems();
+    }
+
+    function stopTimer(id) {
+      if (timers[id] && timers[id].interval) clearInterval(timers[id].interval);
+      delete timers[id];
+      const prod = PRODUCTS.find(p=>p.id===id);
+      if (prod) {
+        prod.timerMinutes = 0;
+        saveProducts();
+        renderItems();
+      }
+    }
+
+    function tickTimer(id) {
+      const t = timers[id];
+      if (!t) return;
+      const prod = PRODUCTS.find(p=>p.id===id);
+      if (!prod) return;
+      const minsLeft = Math.max(0, Math.round((t.endTime - Date.now())/60000));
+      prod.timerMinutes = minsLeft;
+      const span = document.querySelector(`[data-timer-text="${id}"]`);
+      if (span) span.textContent = formatTimer(minsLeft);
+      if (minsLeft <= 0) {
+        stopTimer(id);
+        // Auto restock small amount when timer ends
+        prod.stock = Math.max(prod.stock, 5);
+        saveProducts();
+        renderItems();
+      }
+    }
+
+    /*************** CART BUTTONS ***************/
+    cartItemsEl.addEventListener("click", (e) => {
+      const incId = e.target.dataset.cartInc;
+      const decId = e.target.dataset.cartDec;
+      if (!incId && !decId) return;
+      const id = incId || decId;
+      const prod = PRODUCTS.find(p=>p.id===id);
+      if (!prod) return;
+
+      if (incId) {
+        if (prod.stock <= 0) { alert("No more stock left."); return; }
+        prod.stock -= 1;
+        cart[id] = (cart[id]||0) + 1;
+      } else {
+        cart[id] -= 1;
+        prod.stock += 1;
+        if (cart[id] <= 0) delete cart[id];
+      }
+      saveProducts(); saveCart();
+      renderItems();
+      renderCart();
+    });
+
+    /*************** AUTH ***************/
+    function updateNav() {
+      const navUser = document.getElementById("navUser");
+      const loginBtn = document.getElementById("loginBtn");
+      const signupBtn = document.getElementById("signupBtn");
+      const loginMsg = document.getElementById("loginMsg");
+
+      if (customer) {
+        navUser.textContent = "Logged in as " + customer.name;
+        loginBtn.textContent = "Logout";
+        signupBtn.style.display = "none";
+        loginMsg.style.display = "none";
+      } else {
+        navUser.textContent = "";
+        loginBtn.textContent = "Login";
+        signupBtn.style.display = "inline-block";
+        loginMsg.style.display = "block";
+      }
+    }
+
+    document.getElementById("loginBtn").onclick = () => {
+      if (customer) {
+        if (confirm("Logout from 12AM Devil?")) {
+          customer = null;
+          localStorage.removeItem("devilCustomer");
+          updateNav();
+        }
+      } else {
+        openOverlay("loginOverlay");
+      }
+    };
+    document.getElementById("signupBtn").onclick = () => openOverlay("signupOverlay");
+
+    document.getElementById("loginSubmit").onclick = () => {
+      const id = document.getElementById("loginIdentity").value.trim();
+      const pass = document.getElementById("loginPassword").value;
+      const stored = JSON.parse(localStorage.getItem("devilCustomer"));
+      if (!stored || stored.identity !== id || stored.password !== pass) {
+        alert("Account not found or wrong password. Please sign up first.");
+        return;
+      }
+      customer = stored;
+      updateNav();
+      closeOverlay("loginOverlay");
+      alert("Welcome back, " + customer.name + "!");
+    };
+
+    document.getElementById("signupSubmit").onclick = () => {
+      const name = document.getElementById("signupName").value.trim();
+      const identity = document.getElementById("signupIdentity").value.trim();
+      const pass = document.getElementById("signupPassword").value;
+      if (!activeOtp) {
+        if (!name || !identity || !pass) { alert("Fill all fields first."); return; }
+        // generate demo OTP
+        activeOtp = Math.floor(1000 + Math.random()*9000).toString();
+        document.getElementById("otpCode").textContent = activeOtp;
+        document.getElementById("otpPreview").style.display = "block";
+        alert("Demo OTP generated & shown. (Real projects would send via SMS / Email.)");
+        return;
+      }
+      const entered = document.getElementById("signupOtpInput").value.trim();
+      if (entered !== activeOtp) {
+        alert("OTP mismatch. Check the blinking code and try again.");
+        return;
+      }
+      customer = { name, identity, password: pass };
+      localStorage.setItem("devilCustomer", JSON.stringify(customer));
+      activeOtp = null;
+      document.getElementById("otpPreview").style.display = "none";
+      document.getElementById("signupOtpInput").value = "";
+      updateNav();
+      closeOverlay("signupOverlay");
+      alert("Account created. Welcome, " + name + "!");
+    };
+
+    /*************** ADMIN ***************/
+    function updateAdminVisibility() {
+      document.body.classList.toggle("admin", adminLogged);
+      document.getElementById("adminExitFab").classList.toggle("visible", adminLogged);
+      document.getElementById("adminLoginFab").classList.toggle("visible", !adminLogged);
+    }
+
+    document.getElementById("adminLoginFab").onclick = () => openOverlay("adminOverlay");
+    document.getElementById("adminExitFab").onclick = () => {
+      adminLogged = false;
+      localStorage.setItem("devilAdmin", "false");
+      updateAdminVisibility();
+    };
+
+    document.getElementById("adminSubmit").onclick = () => {
+      const u = document.getElementById("adminUser").value.trim();
+      const p = document.getElementById("adminPass").value;
+      if (u === "Abhishek" && p === "Madmaxwalker97433") {
+        adminLogged = true;
+        localStorage.setItem("devilAdmin", "true");
+        closeOverlay("adminOverlay");
+        updateAdminVisibility();
+        alert("Admin mode enabled.");
+      } else {
+        alert("Wrong admin credentials.");
+      }
+    };
+
+    /*************** CHECKOUT ***************/
+    document.getElementById("checkoutBtn").onclick = () => {
+      if (!customer) {
+        alert("Please login first.");
+        return;
+      }
+      const ids = Object.keys(cart);
+      if (ids.length === 0) {
+        alert("Your cart is empty.");
+        return;
+      }
+      const room = document.getElementById("roomInput").value.trim();
+      const floor = document.getElementById("floorInput").value.trim();
+      const notes = document.getElementById("notesInput").value.trim();
+      if (!room) {
+        alert("Please enter your room number.");
+        return;
+      }
+
+      let total = 0;
+      let text = `New 12AM Devil order%0AFrom: ${encodeURIComponent(customer.name)}%0A`;
+      text += `Room: ${encodeURIComponent(room)}%0A`;
+      if (floor) text += `Floor/Block: ${encodeURIComponent(floor)}%0A`;
+      if (notes) text += `Notes: ${encodeURIComponent(notes)}%0A`;
+      text += `%0AItems:%0A`;
+      ids.forEach(id => {
+        const qty = cart[id];
+        const prod = PRODUCTS.find(p=>p.id===id);
+        const sub = prod.price * qty;
+        total += sub;
+        text += `- ${encodeURIComponent(prod.name)} x ${qty} = ₹${sub}%0A`;
+      });
+      text += `%0ATotal: ₹${total}%0A`;
+      text += `%0APayment: Cash on Delivery`;
+
+      emojiConfettiBurst();
+      const thankMsg = document.getElementById("thankMessage");
+      thankMsg.textContent = `Thanks, ${customer.name}! Your order will reach ${room} soon via WhatsApp confirmation.`;
+      document.getElementById("thankOverlay").classList.add("visible");
+
+      const phone = "918495085456";
+      const url = `https://wa.me/${phone}?text=${text}`;
+      window.open(url, "_blank");
+
+      // Clear cart but keep stock state
+      cart = {};
+      saveCart();
+      renderCart();
+    };
+
+    document.getElementById("thankClose").onclick = () => {
+      document.getElementById("thankOverlay").classList.remove("visible");
+    };
+
+    /*************** INIT ***************/
+    renderHero();
+    renderItems();
+    renderCart();
+    updateNav();
+    updateAdminVisibility();
+  </script>
+</body>
+</html>
